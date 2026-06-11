@@ -59,11 +59,10 @@ Click **Code**, copy the HTTPS URL, then run:
 
 ```powershell
 cd Desktop
-git clone https://github.com/your-username/daily-task-manager.git
+git clone https://github.com/hardikpardik/daily-task-manager.git
 cd daily-task-manager
 ```
 
-Replace the URL with your actual GitHub repository URL.
 
 ## 3. Install Dependencies
 
