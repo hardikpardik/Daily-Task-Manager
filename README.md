@@ -2,47 +2,188 @@
 
 A full-stack task manager built with React, Express, Node.js, MongoDB, and Mongoose.
 
-The app lets users create, view, edit, complete, delete, search, and filter daily tasks. The frontend talks to the backend through REST API routes, and the backend stores task data in MongoDB.
+Users can add, view, edit, complete, delete, search, and filter daily tasks. The React frontend sends requests to the Express backend, and the backend stores task data in MongoDB.
 
 ## Tech Stack
 
-- React for the frontend
-- Vite for local frontend development and production builds
+- React and Vite for the frontend
 - Node.js and Express for the backend API
-- MongoDB for task storage
-- Mongoose for the task schema and database queries
+- MongoDB for the database
+- Mongoose for the task schema and MongoDB queries
 
-## Folder Structure
-
-```text
-daily-task-manager/
-  client/   React app
-  server/   Express API
-```
-
-## Main Features
+## Features
 
 - Add new tasks
-- View all saved tasks
+- View all tasks
 - Edit existing tasks
 - Mark tasks as pending or completed
 - Delete tasks after confirmation
 - Search tasks by title
 - Filter by status, priority, and overdue tasks
-- Show total, pending, completed, high priority, and overdue counts
-- Store task data in MongoDB
+- Show task summary counts
+- Save tasks in MongoDB
 
-## Task Fields
+## Project Structure
 
-Each task stores:
+```text
+daily-task-manager/
+  client/   React frontend
+  server/   Express backend
+```
 
-- `title`
-- `description`
-- `priority`
-- `status`
-- `dueDate`
-- `createdAt`
-- `updatedAt`
+## Run This Project From GitHub
+
+Follow these steps on any new device.
+
+## 1. Install Required Software
+
+Install these first:
+
+- Git
+- Node.js
+- MongoDB Community Edition
+
+Check Git and Node:
+
+```powershell
+git --version
+node --version
+npm --version
+```
+
+## 2. Clone The Repository
+
+Open the GitHub repository page.
+
+Click **Code**, copy the HTTPS URL, then run:
+
+```powershell
+cd Desktop
+git clone https://github.com/your-username/daily-task-manager.git
+cd daily-task-manager
+```
+
+Replace the URL with your actual GitHub repository URL.
+
+## 3. Install Dependencies
+
+If PowerShell blocks `npm`, use `npm.cmd`.
+
+Install frontend dependencies:
+
+```powershell
+cd client
+npm.cmd install
+```
+
+Install backend dependencies:
+
+```powershell
+cd ../server
+npm.cmd install
+```
+
+Go back to the project root:
+
+```powershell
+cd ..
+```
+
+## 4. Create Environment Files
+
+Create the frontend `.env` file:
+
+```powershell
+Copy-Item client/.env.example client/.env
+```
+
+Create the backend `.env` file:
+
+```powershell
+Copy-Item server/.env.example server/.env
+```
+
+The frontend `.env` should contain:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+The backend `.env` should contain:
+
+```env
+PORT=5000
+CLIENT_URL=http://localhost:5173,http://127.0.0.1:5173
+MONGO_URI=mongodb://127.0.0.1:27017/task-manager
+```
+
+## 5. Start MongoDB Community Edition
+
+Make sure MongoDB is running on the device.
+
+On Windows, MongoDB Community Edition usually runs as a service named **MongoDB Server**. Start it from the Services app if it is not already running.
+
+The local database URL is:
+
+```text
+mongodb://127.0.0.1:27017/task-manager
+```
+
+MongoDB will create the `task-manager` database automatically when the first task is saved.
+
+Important: local MongoDB data is stored on that device only. If you clone this project on another laptop, it will start with a separate local database.
+
+## 6. Run The Backend
+
+Open a terminal in the project folder:
+
+```powershell
+cd server
+npm.cmd run dev
+```
+
+The backend runs at:
+
+```text
+http://localhost:5000
+```
+
+Test route:
+
+```text
+http://localhost:5000/api/health
+```
+
+## 7. Run The Frontend
+
+Open a second terminal in the project folder:
+
+```powershell
+cd client
+npm.cmd run dev
+```
+
+Open the app in your browser:
+
+```text
+http://127.0.0.1:5173
+```
+
+## Quick Command Summary
+
+```powershell
+git clone https://github.com/your-username/daily-task-manager.git
+cd daily-task-manager
+cd client
+npm.cmd install
+cd ../server
+npm.cmd install
+cd ..
+Copy-Item client/.env.example client/.env
+Copy-Item server/.env.example server/.env
+```
+
+Then start MongoDB, run the backend, and run the frontend.
 
 ## API Routes
 
@@ -68,7 +209,7 @@ PUT     /api/tasks/:id
 DELETE  /api/tasks/:id
 ```
 
-Example request body:
+Example task body:
 
 ```json
 {
@@ -80,89 +221,7 @@ Example request body:
 }
 ```
 
-## Local MongoDB Setup
-
-This project is ready to use MongoDB Community Edition locally.
-
-Start MongoDB on your computer, then use this backend connection string:
-
-```env
-MONGO_URI=mongodb://127.0.0.1:27017/task-manager
-```
-
-MongoDB will create the `task-manager` database when the first task is saved.
-
-## Environment Files
-
-Create the frontend environment file:
-
-```powershell
-Copy-Item client/.env.example client/.env
-```
-
-Create the backend environment file:
-
-```powershell
-Copy-Item server/.env.example server/.env
-```
-
-Frontend environment:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-Backend environment:
-
-```env
-PORT=5000
-CLIENT_URL=http://localhost:5173,http://127.0.0.1:5173
-MONGO_URI=mongodb://127.0.0.1:27017/task-manager
-```
-
-## Install Dependencies
-
-If PowerShell blocks `npm`, use `npm.cmd`.
-
-Frontend:
-
-```powershell
-cd client
-npm.cmd install
-```
-
-Backend:
-
-```powershell
-cd ../server
-npm.cmd install
-```
-
-## Run The App
-
-Start MongoDB Community Edition first.
-
-Start the backend:
-
-```powershell
-cd server
-npm.cmd run dev
-```
-
-Start the frontend in a second terminal:
-
-```powershell
-cd client
-npm.cmd run dev
-```
-
-Open the app:
-
-```text
-http://127.0.0.1:5173
-```
-
-## Project Flow
+## How The App Works
 
 ```text
 User action in React
